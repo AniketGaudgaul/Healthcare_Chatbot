@@ -1,0 +1,9 @@
+beautifulsoup4
+langchain-community
+langchainhub
+langchain_openai
+langchain_chroma
+langchain_experimental
+streamlit
+pytesseract
+pdf2image
