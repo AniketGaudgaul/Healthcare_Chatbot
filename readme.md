@@ -52,7 +52,7 @@ Provide a sample URL, e.g., https://www.drugs.com/paracetamol.html, or upload a 
 
 Click on the "Process URL" or "Process PDF" button to create the embeddings.
 
-Once the embeddings are created, type in the sample questions provided in the sample_questions and click on "Get Answer".
+Once the embeddings are created, type in the sample questions provided in the documentation and click on "Get Answer".
 
 The answer will be displayed in the left tab.
 
