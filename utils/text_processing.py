@@ -20,21 +20,15 @@ def process(docs):
 
     return clean_text
 
-    # # Replace with your OpenAI API key
-    # embeddings = OpenAIEmbeddings()
 
-    # text_splitter = SemanticChunker(embeddings=embeddings)
+### Alternatively we can use Semantic Chunker depending upon the text document ###
+# text_splitter = SemanticChunker(embeddings=embeddings)
 
     # text_splitter = SemanticChunker(
     #     embeddings=embeddings,
     #     breakpoint_threshold_type="percentile",
     #     breakpoint_threshold_amount=85
     # )
-
-    # chunks = text_splitter.split_text(clean_text)
-
-    # print(chunks)
-
 
 # For Website based text. (As Webbasedloader directly provides a str instead of List of docs)
 def index_from_text(text,directory=None):
