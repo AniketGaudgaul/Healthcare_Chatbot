@@ -55,7 +55,7 @@ Click on the "Process URL" or "Process PDF" button to create the embeddings.
 Once the embeddings are created, type in the sample questions provided in the documentation and click on "Get Answer".
 
 The answer will be displayed in the left tab.
-
+***
 2. Command-Line Interface (CLI)
 The CLI currently supports querying web pages. PDF support can be added later.
 
