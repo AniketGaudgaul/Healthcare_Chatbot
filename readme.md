@@ -1,6 +1,6 @@
-# Website QA Application
+# Healthcare Chatbot Application
 
-A short description about the application.
+This tool allows users to ask queries regarding the Healthcare related documents like Health Insurance Policy, Doctor’s Diagnosis or Prescription. It utilizes RAG to retrieve relevant context from the PDF/Web text which is then provided to the LLM Model (GPT-3.5). The project is facilitated through a user-friendly web interface and a CLI method. 
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ Before you begin, ensure you have the following installed:
 Start by cloning the repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/website_qa.git
-cd website_qa
+git clone https://github.com/AniketGaudgaul/Healthcare_Chatbot.git
+cd Healthcare_Chatbot
 ```
 
 Install Required Libraries
@@ -48,13 +48,13 @@ This will open the UI in your default web browser.
 
 ### Instructions:
 
-Provide a sample URL, e.g., https://www.drugs.com/paracetamol.html, or upload a sample PDF from the sample_pdfs folder.
+a. Provide a sample URL, e.g., https://www.drugs.com/paracetamol.html, or upload a sample PDF from the sample_pdfs folder.
 
-Click on the "Process URL" or "Process PDF" button to create the embeddings.
+b. Click on the "Process URL" or "Process PDF" button to create the embeddings.
 
-Once the embeddings are created, type in the sample questions provided in the documentation and click on "Get Answer".
+c. Once the embeddings are created, type in the sample questions provided in the documentation and click on "Get Answer".
 
-The answer will be displayed in the left tab.
+d. The answer will be displayed in the left tab.
 ***
 2. Command-Line Interface (CLI)
 The CLI currently supports querying web pages. PDF support can be added later.
@@ -67,8 +67,8 @@ python main.py
 
 ### Instructions:
 
-Enter the web URL when prompted.
+a. Enter the web URL when prompted.
 
-Enter your question and hit enter.
+b. Enter your question and hit enter.
 
-The answer will be displayed in the CLI.
+c. The answer will be displayed in the CLI.
