@@ -31,7 +31,7 @@ def process(docs):
 
 # For Website based text. (As Webbasedloader directly provides a str instead of List of docs)
 def index_from_text(text,directory=None):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=150)
     splits = text_splitter.split_text(text)
     
     # USE OF CHROMA DB VECTOR DATABASE
