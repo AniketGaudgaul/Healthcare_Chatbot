@@ -1,9 +1,12 @@
 ### Main File is only for ```Command Line Interface``` and currently defaults to only answering queries based on URL provided. ###
 ### Run the file using ``python main.py`` ###
 
+
+### Note: Use the ``ui.py`` file to access the UI. Use ``streamlit run ui.py`` ###
+
 from utils.content_loader import load_web_content
 from utils.text_processing import index_from_docs
-from utils.retriever_generator import retriever_generator
+from utils.retriever_generator import setup_chain, invoke_chain
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
@@ -25,8 +28,10 @@ def answer_question():
     # Process and index the contents
     vectorstore = index_from_docs(docs)
 
-    # Setup retriever and generator
-    answer = retriever_generator(vectorstore, query, llm)
+    # Setup retriever and chain
+    rag_chain, store = setup_chain(vectorstore, llm)
+
+    answer, store = invoke_chain(rag_chain,store,query)
 
     return answer
 

@@ -2,7 +2,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
-import os
 import re
 
 
@@ -32,7 +31,7 @@ def process(docs):
 
 # For Website based text. (As Webbasedloader directly provides a str instead of List of docs)
 def index_from_text(text,directory=None):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=200, chunk_overlap=20)
     splits = text_splitter.split_text(text)
     
     # USE OF CHROMA DB VECTOR DATABASE
@@ -43,7 +42,7 @@ def index_from_text(text,directory=None):
 
 # For the PDFs based documents.
 def index_from_docs(docs,directory=None):
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=150)
     splits = text_splitter.split_documents(docs)
     if directory is not None:
         vectorstore = Chroma.from_documents(documents=splits, embedding=OpenAIEmbeddings(),persist_directory=directory)

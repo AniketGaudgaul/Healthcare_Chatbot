@@ -6,7 +6,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_openai import ChatOpenAI
 from utils.content_loader import load_web_content
 from utils.text_processing import process, index_from_text, index_from_docs
-from utils.retriever_generator import retriever_generator
+from utils.retriever_generator import setup_chain, invoke_chain
 from utils.display_file import displayPDF
 from langchain_chroma import Chroma
 from PyPDF2 import PdfReader
@@ -24,6 +24,9 @@ process_url = st.sidebar.button("Process URL", key="url")
 
 pdf = st.sidebar.file_uploader("Upload the Medical Document in a PDF file")
 process_pdf = st.sidebar.button("Process PDF", key="pdf")
+
+st.sidebar.text("Must click on 'Process URL' or 'Process PDF'!",)
+
 file_path = "./chroma_db"
 
 # Main section 
@@ -51,6 +54,8 @@ if pdf:
     displayPDF(path)
 
 
+### Code for OCR based PDF's. Yet to be implemented ###
+
 # from pdf2image import convert_from_path
 # import pytesseract
 
@@ -58,9 +63,6 @@ if pdf:
 # for page in pages:
 #     text = pytesseract.image_to_string(page)
 #     print(text)
-
-
-
 
 # Define the LLM
 llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0.0)
@@ -98,13 +100,21 @@ if process_pdf:
     time.sleep(1.2)
 
 
-# Taking Question Input and creating vectorstore to answer the query.
-query = main_placeholder.text_input("Question: ")
+query = main_placeholder.text_input("Question: (Please process URL/PDF before asking the query)")
 
+
+# Loading the existing Vector Database
+if os.path.exists(file_path):
+    vectorstore = Chroma(persist_directory=file_path, embedding_function=OpenAIEmbeddings())
+
+# Prompt, LLM Chain and Memory setup
+chain, history = setup_chain(vectorstore, llm)
+
+# Taking Question Input and updating the chat history to answer the query.
 if ask_question and query:
 
-    if os.path.exists(file_path):
-        vectorstore = Chroma(persist_directory=file_path, embedding_function=OpenAIEmbeddings())
-        answer = retriever_generator(vectorstore, query, llm)
+        answer, store = invoke_chain(chain,history,query)
+        history = store
+
         st.sidebar.header("Answer")
         st.sidebar.write(answer)

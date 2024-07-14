@@ -17,6 +17,3 @@ def load_web_content(url):
     doc = loader.load()
 
     return doc
-
-
-print(load_web_content("https://www.drugs.com/paracetamol.html"))
